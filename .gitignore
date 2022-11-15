@@ -1,0 +1,6 @@
+node_modules
+package-lock.json
+../node_modules
+.txt
+temp*.py
+old/
