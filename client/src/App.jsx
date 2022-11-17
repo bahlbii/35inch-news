@@ -7,27 +7,19 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Navbar from 'react-bootstrap/Navbar'
 import AddNews from './components/AddNews';
+import Landing from './components/Landing';
 
 const App = () => {
+
     return (
         <NewsContextProvider>
-            <div className="container">
-                <div className="pb-5 mb-5   ">
-                    <Navbar bg="dark" variant="dark" className="fixed-top">
-
-                        <Navbar.Brand className="display-1 mx-auto ">
-
-                            35INCH NEWS
-
-                        </Navbar.Brand>
-                    </Navbar>
-                </div>
-                {/* <hr></hr><hr></hr> */}
+            <div>
                 <Router>
                     <Switch>
-                        <Route exact path="/" component={Login} />
-                        <Route exact path="/addNews" component={AddNews} />
+                        <Route exact path="/" component={Landing} />
+                        <Route exact path="/login" component={Login} />
                         <Route exact path="/register" component={Register} />
+                        <Route exact path="/news/addNews" component={AddNews} />
                         <Route exact path="/news" component={Home} />
                         <Route exact path="/news/:id" component={NewsEditPage} />
                     </Switch>

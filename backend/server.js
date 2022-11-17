@@ -2,7 +2,7 @@ const dotenv = require("dotenv").config(); //environment library to use .env fil
 const express = require("express")
 const app = express();
 const cors = require("cors") //nodejs library for cross-origin resource sharing
-const db2 = require("./db")
+//const db = require("./db")
 const db = require('./elephant'); //for elephant
 
 //middleware
@@ -31,7 +31,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 //Post Route to login
-app.post("/api", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -40,7 +40,7 @@ app.post("/api", async (req, res) => {
 
 
     // login page
-    let sqlLogin = 'SELECT * FROM Users WHERE username = $1 AND password = $2;'
+    let sqlLogin = 'SELECT * FROM users WHERE username = $1 AND password = $2;'
     const loginUser = await db.query(sqlLogin, [
       username, password]);
 
@@ -52,6 +52,7 @@ app.post("/api", async (req, res) => {
         },
       });
       console.log(`user signedin: ${loginUser.rows[0].username}`);
+      console.log(`user signedin: ${typeof(loginUser.rows[0].username)}`);
     }
     else {
       res.status(404).json({
@@ -95,17 +96,13 @@ app.get("/api/news/:id", async (req, res) => {
         news: aNews.rows[0]
       }
     });
-    // console.log("hello from server")
-    // console.log(typeof(aNews));
-    // console.log(aNews.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
 });
 
-//add a news /addNews
-//POST ROUTE: add a rating to a news 
-app.post("/api/addNews", async (req, res) => {
+//POST ROUTE: add a news
+app.post("/api/news/addNews", async (req, res) => {
 
   const news_body = req.body["news_body"];
   const news_author = req.body["news_author"];
@@ -123,6 +120,24 @@ app.post("/api/addNews", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+  }
+});
+
+//DELETE ROUTe: delete a news
+app.delete("/api/news/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const aNews = await db.query("DELETE FROM news_table WHERE news_id = $1", [
+      id
+    ]);
+    res.status(200).json({
+      status: "success",
+      data: {
+        news: aNews.rows[0]
+      }
+    });
+  } catch (err) {
+    console.error(err.message);
   }
 });
 

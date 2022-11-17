@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import Landing from './Landing';
 import LoaderAPI from './LoaderAPI';
+import Navbar from './Navbar';
 
 const Login = () => {
 
@@ -17,11 +19,12 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault(); //prevent page from refreshing
     try {
-      const response = await LoaderAPI.post(`/`, {
+      const response = await LoaderAPI.post(`/login`, {
         username: usernameLogin,
         password: passwordLogin
       });
-      history.push("/news/")
+      console.log(`signedin: ${response.data.user}`);
+      history.push("/news")
 
     } catch (err) {
       //set the message to be presented to user
@@ -36,15 +39,19 @@ const Login = () => {
   }
 
   return (
-    <div className="w-50 p-5 mx-auto">
-      <div className="registration p-5"> 
+    <>
+    <div>
+      <Navbar/>
+    </div>
+    <div className="bigForm p-5 mx-auto">
+      <div className="registration p-3"> 
         <form className='shadow-lg p-5 mb-5 bg-white rounded '>
           <div className="form-group">
             <label htmlFor="email">Email address</label>
             <input type="email"
               onChange={(e) => { setUsernameLogin(e.target.value) }}
               className="form-control"
-              id="exampleInputEmail1"
+              id="inputBorders"
               aria-describedby="emailHelp"
               placeholder="Enter email" />
 
@@ -54,18 +61,18 @@ const Login = () => {
             <input type="password"
               onChange={(e) => { setPasswordLogin(e.target.value) }}
               className="form-control"
-              id="exampleInputPassword1"
+              id="inputBorders"
               placeholder="Password" />
           </div>
           <div><h5>{messageForUser}</h5></div>
           <button type="submit"
             onClick={login}
-            className="btn btn-primary">
+            className="login_button btn btn-primary">
             Login
           </button>
 
           <hr></hr>
-          <h6>No account? Register below.</h6>
+          <h6>Don't have an account? click here</h6>
           <hr />
 
           <button type="submit"
@@ -76,6 +83,7 @@ const Login = () => {
         </form>
       </div>
     </div>
+    </>
   )
 }
 

@@ -1,9 +1,10 @@
-import React, {useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { NewsContext } from "../context/NewsContext";
 import LoaderAPI from "../components/LoaderAPI";
 import Reviews from "../components/Ratings";
 import AddReview from "../components/RateTweet";
+import Navbar from "../components/Navbar";
 
 const NewsEditPage = (e) => {
   const { id, news_body } = useParams();
@@ -47,6 +48,9 @@ const NewsEditPage = (e) => {
       {selectedNews && (
         <>
           <div>
+            <Navbar />
+          </div>
+          <div className="container">
             <div className="card" >
               <div className="card-body">
                 <h6 className="card-subtitle mb-2 ">
@@ -62,7 +66,7 @@ const NewsEditPage = (e) => {
                 </h4>
 
 
-                
+
 
 
 

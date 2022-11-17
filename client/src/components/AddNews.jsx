@@ -14,11 +14,11 @@ const AddNews = () => {
     const addnews = async (e) => {
         e.preventDefault(); //prevent page from refreshing
         try {
-            const response = await LoaderAPI.post(`/addNews`, { //toFix
+            const response = await LoaderAPI.post(`/news/addNews`, { //toFix
                 news_body,
                 news_author
             });
-            history.push("/addNews")
+            history.push("/news/addNews")
 
         } catch (err) {
             console.err(err);
