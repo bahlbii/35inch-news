@@ -3,7 +3,7 @@ import React from 'react'
 const Reviews = ({ reviews }) => {
   return (
     <div className="row row-cols-3 mb-2">
-      {reviews.map((review) => {
+      {/* {reviews.map((review) => {
         return (
           <div
             key={review.rating_id}
@@ -20,7 +20,7 @@ const Reviews = ({ reviews }) => {
             </div>
           </div>
         );
-      })}
+      })} */}
     </div>
   )
 }

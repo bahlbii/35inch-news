@@ -17,7 +17,7 @@ const AddReview = () => {
     const handleSubmitReview = async (e) => {
         e.preventDefault(); //prevent page from refreshing
         try {
-            const response = await LoaderAPI.post(`/news/${id}/rateTweet`, {
+            const response = await LoaderAPI.post(`/news/${id}/rateTweet`, { //editNews toFix
                 rater_name,
                 rating_category1,
                 rating_category2,

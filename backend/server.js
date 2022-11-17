@@ -84,6 +84,9 @@ app.get("/api/news/:id", async (req, res) => {
         news: aNews.rows[0]
       }
     });
+    // console.log("hello from server")
+    // console.log(typeof(aNews));
+    // console.log(aNews.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
@@ -113,19 +116,24 @@ app.post("/api/addNews", async (req, res) => {
 });
 
 //POST ROUTE: add a rating to a news toFix
-app.post("/api/news/:id/rateTweet", async (req, res) => {
+app.post("/api/news/:id/editNews", async (req, res) => {
   try {
-    const singleRating = await db.query(
-      "INSERT INTO Ratings (news_id, news_body, news_author) VALUES ($1, $2, $3) RETURNING *;",
-      [req.params.news_id, req.body.news_body, req.body.news_author]
-    );
+    // const singleRating = await db.query(
+    //   "INSERT INTO Ratings (news_id, news_body, news_author) VALUES ($1, $2, $3) RETURNING *;",
+    //   [req.params.news_id, req.body.news_body, req.body.news_author]
+    // );
+    const updateNews = await db.query(
+      "UPDATE news_table SET news_body = $1 WHERE news_id = $2 RETURNING *;",
+      [req.body.news_body, req.params.id]
+    )
 
     res.status(201).json({
       status: "success",
       data: {
-        rating: singleRating.rows[0],
+        rating: updateNews.rows[0],
       },
     });
+    console.log(rating);
   } catch (err) {
     console.log(err);
   }

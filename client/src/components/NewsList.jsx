@@ -21,7 +21,7 @@ const NewsList = (props) => {
     });
 
     //handle a click on tweet row
-    const handleTweetSelect = (news_id) => {
+    const handleEdit = (news_id) => {
         history.push(`/news/${news_id}`);
     }
     //add news button
@@ -54,11 +54,11 @@ const NewsList = (props) => {
 
                     {news && news.map(tweet => {
                         return (
-                            <tr onClick={() => handleTweetSelect(tweet.news_id)} key={tweet.news_id}>
+                            <tr >
                                 <td>{tweet.news_id}</td>
                                 <td>{tweet.news_body}</td>
                                 <td>{tweet.news_author}</td>
-                                <td><button className="btn btn-warning">Edit</button></td>
+                                <td><button className="btn btn-warning" onClick={() => handleEdit(tweet.news_id)}>Edit</button></td>
                                 <td><button className="btn btn-danger">Delete</button></td>
                             </tr>
                         )
