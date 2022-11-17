@@ -21,8 +21,6 @@ const Login = () => {
         username: usernameLogin,
         password: passwordLogin
       });
-
-      console.log(`status: ${response.data.status}`);
       history.push("/news/")
 
     } catch (err) {

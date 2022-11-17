@@ -18,8 +18,6 @@ const AddNews = () => {
                 news_body,
                 news_author
             });
-
-            console.log(`status1: ${response.data.status}`);
             history.push("/addNews")
 
         } catch (err) {

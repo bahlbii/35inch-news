@@ -2,8 +2,8 @@ const dotenv = require("dotenv").config(); //environment library to use .env fil
 const express = require("express")
 const app = express();
 const cors = require("cors") //nodejs library for cross-origin resource sharing
-const db = require("./db")
-const { spawn } = require('child_process');
+const db2 = require("./db")
+const db = require('./elephant'); //for elephant
 
 //middleware
 app.use(cors());
@@ -15,12 +15,20 @@ app.post("/api/register", async (req, res) => {
   const username = req.body["usernameRegister"];
   const password = req.body["passwordRegister"];
 
+  //create necessary tables at first
+  let sqlUsersTable = 'CREATE TABLE IF NOT EXISTS users (user_id SERIAL NOT NULL PRIMARY KEY, username VARCHAR(50) NOT NULL, password VARCHAR(50) NOT NULL);';
+  const createUsersTable = await db.query(sqlUsersTable, null);
+
+  //create necessary tables at first
+  let sqlNewsTable = 'CREATE TABLE IF NOT EXISTS news_table (news_id SERIAL NOT NULL PRIMARY KEY, news_body VARCHAR(50) NOT NULL, news_author VARCHAR(50) NOT NULL);';
+  const createNewsTable = await db.query(sqlNewsTable, null);
+
   const regUser = await db.query("INSERT INTO users ( username, password) VALUES ($1, $2)", [
     username, password
   ])
 
   res.send("success")
-})
+});
 
 //Post Route to login
 app.post("/api", async (req, res) => {
@@ -29,23 +37,26 @@ app.post("/api", async (req, res) => {
 
 
   try {
-    const loginUser = await db.query("SELECT * FROM Users WHERE username = $1 AND password = $2", [
+
+
+    // login page
+    let sqlLogin = 'SELECT * FROM Users WHERE username = $1 AND password = $2;'
+    const loginUser = await db.query(sqlLogin, [
       username, password]);
 
     if (loginUser.rowCount === 1) {
       res.status(200).json({
         status: "success",
         data: {
-          user: loginUser.rows[0]
+          user: loginUser.rows[0].username
         },
       });
+      console.log(`user signedin: ${loginUser.rows[0].username}`);
     }
     else {
       res.status(404).json({
       });
     }
-
-
   } catch (err) {
     console.log(err.message)
   }
@@ -55,7 +66,7 @@ app.post("/api", async (req, res) => {
 //GET ROUTE: get all news in the database
 app.get("/api/news", async (req, res) => {
   try {
-    const totalNews = await db.query("SELECT * FROM news_table ORDER BY news_id ASC");
+    const totalNews = await db.query("SELECT * FROM news_table ORDER BY news_id DESC");
 
     res.status(200).json({
       status: "success",
@@ -130,10 +141,10 @@ app.post("/api/news/:id/editNews", async (req, res) => {
     res.status(201).json({
       status: "success",
       data: {
-        rating: updateNews.rows[0],
+        rating0: updateNews.rows[0],
       },
     });
-    console.log(rating);
+    console.log(status);
   } catch (err) {
     console.log(err);
   }

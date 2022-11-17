@@ -21,7 +21,7 @@ const NewsList = (props) => {
     });
 
     //handle a click on tweet row
-    const handleEdit = (news_id) => {
+    const handleEditButton = (news_id) => {
         history.push(`/news/${news_id}`);
     }
     //add news button
@@ -43,9 +43,9 @@ const NewsList = (props) => {
             <table className="table table-bordered table-hover table-striped table-dark">
                 <thead>
                     <tr className="bg-primary">
-                        <th scope='col'>news_id</th>
-                        <th scope='col' className="w-75">news_body</th>
-                        <th scope='col' className="w-auto">news_author</th>
+                        <th scope='col'>ID</th>
+                        <th scope='col' className="w-75">News</th>
+                        <th scope='col' className="w-auto">Author</th>
                         <th scope='col' className="w-auto">Edit</th>
                         <th scope='col' className="w-auto">Delete</th>
                     </tr>
@@ -58,7 +58,12 @@ const NewsList = (props) => {
                                 <td>{tweet.news_id}</td>
                                 <td>{tweet.news_body}</td>
                                 <td>{tweet.news_author}</td>
-                                <td><button className="btn btn-warning" onClick={() => handleEdit(tweet.news_id)}>Edit</button></td>
+                                <td><button className="btn btn-warning"
+                                    onClick={() => handleEditButton(tweet.news_id)}
+                                >
+                                    Edit
+                                </button>
+                                </td>
                                 <td><button className="btn btn-danger">Delete</button></td>
                             </tr>
                         )
