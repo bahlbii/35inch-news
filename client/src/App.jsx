@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import TweetDetailPage from './routes/TweetDetailPage';
+import NewsEditPage from './routes/NewsEditPage';
 import Home from './routes/Home';
 import { NewsContextProvider } from './context/NewsContext';
 import Register from './components/Register';
@@ -29,7 +29,7 @@ const App = () => {
                         <Route exact path="/addNews" component={AddNews} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/news" component={Home} />
-                        <Route exact path="/news/:id" component={TweetDetailPage} />
+                        <Route exact path="/news/:id" component={NewsEditPage} />
                     </Switch>
                 </Router>
             </div>

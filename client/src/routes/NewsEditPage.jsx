@@ -5,7 +5,7 @@ import LoaderAPI from "../components/LoaderAPI";
 import Reviews from "../components/Ratings";
 import AddReview from "../components/RateTweet";
 
-const TweetDetailPage = (e) => {
+const NewsEditPage = (e) => {
   const { id, news_body } = useParams();
   const [updatedBody, setUpdatedBody] = useState("");
   const { selectedNews, setSelectedNews } = useContext(NewsContext);
@@ -81,4 +81,4 @@ const TweetDetailPage = (e) => {
   )
 };
 
-export default TweetDetailPage;
+export default NewsEditPage;
