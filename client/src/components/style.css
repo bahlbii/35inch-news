@@ -1,0 +1,49 @@
+body{
+    background-color: #171515;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container-fluid{
+    background-color: #171515;
+}
+
+.btn-primary{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 0;
+    background-color: transparent;
+    border-color: #fab513;
+}
+
+.btn-primary:hover{
+    color: #fff;
+    background-color: #fab513;
+    border-color: #fab513;
+}
+.btn-link {
+    font-weight: 400;
+    color: white;
+    background-color: transparent;
+}
+.btn-link:hover {
+    font-weight: 400;
+    color: #fab513;
+    text-decoration: none;
+}
+.login_button{
+    color: #000;
+}
+#inputBorders {
+    border-color: #fab513;
+}
+.login_button:hover {
+    border-color: #fab513;
+}
+.tableHeader{
+    background: #171515;
+    border: none;
+    
+}
+.myTable{
+    border-top: none;
+}
