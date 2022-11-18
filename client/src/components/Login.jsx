@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import Landing from './Landing';
 import LoaderAPI from './LoaderAPI';
 import Navbar from './Navbar';
 
@@ -33,7 +32,7 @@ const Login = () => {
     
   
   }
-  //take user to regsiter page function
+  //take user to regsiter page 
   const register = async () => {
     history.push("/register")
   }

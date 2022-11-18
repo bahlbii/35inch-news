@@ -62,12 +62,6 @@ const NewsEditPage = (e) => {
                 >
                   {selectedNews.news.news_body}
                 </h4>
-
-
-
-
-
-
                 <hr></hr>
                 <button type="submit"
                   onClick={submitEdit}

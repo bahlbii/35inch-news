@@ -11,7 +11,7 @@ const AddNews = () => {
     const [news_body, setNews_body] = useState("");
     const [news_author, setNews_author] = useState("");
 
-    //login function
+    //get state from form, send it to database as query
     const addnews = async (e) => {
         e.preventDefault(); //prevent page from refreshing
         try {
@@ -27,6 +27,7 @@ const AddNews = () => {
         history.push("/news");
 
     }
+    //send user to homepage of news list
     const backToList = async (e) => {
         history.push("/news");
     }

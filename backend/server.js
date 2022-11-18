@@ -11,6 +11,7 @@ app.use(express.json());
 //POST ROUTE to register user
 app.post("/api/register", async (req, res) => {
 
+  //get username and password from the request body of the register api call
   const username = req.body["usernameRegister"];
   const password = req.body["passwordRegister"];
 
@@ -22,6 +23,7 @@ app.post("/api/register", async (req, res) => {
   let sqlNewsTable = 'CREATE TABLE IF NOT EXISTS news_table (news_id SERIAL NOT NULL PRIMARY KEY, news_body VARCHAR(50) NOT NULL, news_author VARCHAR(50) NOT NULL);';
   const createNewsTable = await db.query(sqlNewsTable, null);
 
+  //send username and password as a query parameters
   const regUser = await db.query("INSERT INTO users ( username, password) VALUES ($1, $2)", [
     username, password
   ])
@@ -31,6 +33,7 @@ app.post("/api/register", async (req, res) => {
 
 //Post Route to login
 app.post("/api/login", async (req, res) => {
+  //get username and password from the request body of the login api call
   const username = req.body.username;
   const password = req.body.password;
 
@@ -159,6 +162,7 @@ app.post("/api/news/:id/editNews", async (req, res) => {
   }
 });
 
+// use .env file to get the default port
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
