@@ -1,9 +1,7 @@
-const dotenv = require("dotenv").config(); //environment library to use .env files
 const express = require("express")
 const app = express();
 const cors = require("cors") //nodejs library for cross-origin resource sharing
-//const db = require("./db")
-const db = require('./elephant'); //for elephant
+const db = require('./elephantsql'); //for elephant
 
 //middleware
 app.use(cors());
@@ -35,10 +33,7 @@ app.post("/api/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-
   try {
-
-
     // login page
     let sqlLogin = 'SELECT * FROM users WHERE username = $1 AND password = $2;'
     const loginUser = await db.query(sqlLogin, [
@@ -51,8 +46,6 @@ app.post("/api/login", async (req, res) => {
           user: loginUser.rows[0].username
         },
       });
-      console.log(`user signedin: ${loginUser.rows[0].username}`);
-      console.log(`user signedin: ${typeof(loginUser.rows[0].username)}`);
     }
     else {
       res.status(404).json({
