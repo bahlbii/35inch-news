@@ -41,10 +41,10 @@ const AddNews = () => {
                 <form className='shadow-lg p-5 mb-5 bg-white rounded '>
                     <div className="form-group">
                         <label htmlFor="email">Write news here</label>
-                        <textarea type="email"
+                        <textarea type="text"
                             onChange={(e) => { setNews_body(e.target.value) }}
                             className="form-control"
-                            id="exampleInputEmail1"
+                            id="inputBorders"
                             aria-describedby="emailHelp"
                             placeholder="Write your news here" />
                     </div>
@@ -52,14 +52,14 @@ const AddNews = () => {
                         <input type="email"
                             onChange={(e) => { setNews_author(e.target.value) }}
                             className="form-control"
-                            id="exampleInputEmail1"
+                            id="inputBorders"
                             aria-describedby="emailHelp"
                             placeholder="Enter author name" />
                     </div>
                     <br />
                     <button type="submit"
                         onClick={addnews}
-                        className="btn btn-primary">
+                        className="login_button btn btn-primary">
                         Submit News
                     </button>
                 </form>

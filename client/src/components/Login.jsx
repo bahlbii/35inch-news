@@ -43,10 +43,10 @@ const Login = () => {
     <div>
       <Navbar/>
     </div>
-    <div className="bigForm p-5 mx-auto">
-      <div className="registration p-3"> 
-        <form className='shadow-lg p-5 mb-5 bg-white rounded '>
-          <div className="form-group">
+    <div className="w-50 p-5 mx-auto align-items-center">
+        <div className="registration p-5">
+          <form className='shadow-lg p-5 mb-5 bg-white rounded '>
+            <div className="form-group">
             <label htmlFor="email">Email address</label>
             <input type="email"
               onChange={(e) => { setUsernameLogin(e.target.value) }}
@@ -77,7 +77,7 @@ const Login = () => {
 
           <button type="submit"
             onClick={register}
-            className="btn btn-primary">
+            className="login_button btn btn-primary">
             Register
           </button>
         </form>

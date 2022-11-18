@@ -82,7 +82,7 @@ const NewsList = (props) => {
                                         <td><button className="btn btn-link"
                                             onClick={() => handleEditButton(news.news_id)}
                                         >
-                                            Edit
+                                            Edit <img src='vector-pen.svg'/>
                                         </button>
                                         </td>
                                         <td><button className="btn btn-link"

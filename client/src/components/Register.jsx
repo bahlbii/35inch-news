@@ -33,7 +33,7 @@ const Register = () => {
     <><div>
       <Navbar />
     </div>
-      <div className="w-50 p-5 mx-auto">
+      <div className="w-50 p-5 mx-auto align-items-center">
         <div className="registration p-5">
           <form className='shadow-lg p-5 mb-5 bg-white rounded '>
             <div className="form-group">
@@ -41,7 +41,7 @@ const Register = () => {
               <input type="email"
                 onChange={(e) => { setUsernameRegister(e.target.value) }}
                 className="form-control"
-                id="exampleInputEmail1"
+                id="inputBorders"
                 aria-describedby="emailHelp"
                 placeholder="Enter email" />
 
@@ -51,13 +51,13 @@ const Register = () => {
               <input type="password"
                 onChange={(e) => { setPasswordRegister(e.target.value) }}
                 className="form-control"
-                id="exampleInputPassword1"
+                id="inputBorders"
                 placeholder="Password" />
             </div>
 
             <button type="submit"
               onClick={register}
-              className="btn btn-primary">
+              className="login_button btn btn-primary">
               Register
             </button>
           </form>
