@@ -2,8 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { NewsContext } from "../context/NewsContext";
 import LoaderAPI from "../components/LoaderAPI";
-import Reviews from "../components/Ratings";
-import AddReview from "../components/RateTweet";
 import Navbar from "../components/Navbar";
 
 const NewsEditPage = (e) => {
