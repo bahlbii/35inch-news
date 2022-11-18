@@ -1,2 +1,0 @@
-A news web app
-
