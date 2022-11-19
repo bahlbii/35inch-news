@@ -35,7 +35,7 @@ const NewsEditPage = (e) => {
         news_body: updatedBody,
       });
 
-      
+
       history.push("/news")
     } catch (err) {
       console.error(err.message);
@@ -68,6 +68,7 @@ const NewsEditPage = (e) => {
                 <hr></hr>
 
                 <input type="text"
+                  id="inputBorders"
                   value={updatedBody}
                   onChange={(e) => setUpdatedBody(e.target.value)} />
 
