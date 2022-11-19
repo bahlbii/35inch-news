@@ -18,13 +18,9 @@ client side:
   $ npm install
   $ npm start
 ```
-
-
-
-
 ## Techstack
 ```
-> Hosted postgreSQL on elephantsql.org was used
+> Hosted postgreSQL on elephantsql.com was used
 > React + bootstrap was used for frontend.
 > Nodejs for the backend and Axios for hitting API endpoints.
 > Postman was used to test all API calls
