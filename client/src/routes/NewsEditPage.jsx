@@ -8,7 +8,7 @@ const NewsEditPage = (e) => {
 
   let history = useHistory();
 
-  const { id, news_body } = useParams();
+  const { id } = useParams();
   const { selectedNews, setSelectedNews } = useContext(NewsContext);
   const [updatedBody, setUpdatedBody] = useState(() => selectedNews);
 
@@ -34,6 +34,7 @@ const NewsEditPage = (e) => {
         id,
         news_body: updatedBody,
       });
+      console.log(response)
 
 
       history.push("/news")
