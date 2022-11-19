@@ -1,20 +1,23 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { NewsContext } from "../context/NewsContext";
 import LoaderAPI from "../components/LoaderAPI";
 import Navbar from "../components/Navbar";
 
 const NewsEditPage = (e) => {
-  const { id, news_body } = useParams();
-  const [updatedBody, setUpdatedBody] = useState("");
-  const { selectedNews, setSelectedNews } = useContext(NewsContext);
 
+  let history = useHistory();
+
+  const { id, news_body } = useParams();
+  const { selectedNews, setSelectedNews } = useContext(NewsContext);
+  const [updatedBody, setUpdatedBody] = useState(() => selectedNews);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await LoaderAPI.get(`/news/${id}`);
         setSelectedNews(response.data.data);
+        setUpdatedBody(response.data.data.news.news_body);
 
       } catch (err) {
         console.log(err);
@@ -22,24 +25,25 @@ const NewsEditPage = (e) => {
     };
 
     fetchData();
-  }, []);
+  }, [id, setSelectedNews]);
 
   const submitEdit = async (e) => {
-
-    e.preventDefault(); //prevent page from refreshing
+    e.preventDefault();
     try {
-      const response = await LoaderAPI.post(`/news/${id}/editNews`, { //editNews toFix
+      const response = await LoaderAPI.post(`/news/${id}/editNews`, {
         id,
-        news_body: news_body,
+        news_body: updatedBody,
       });
 
-      console.log(`param id: ${id}`);
-      console.log(`param body: ${updatedBody}`);
-
-      window.location.reload(false); //refreshes the web page after task
+      
+      history.push("/news")
     } catch (err) {
       console.error(err.message);
     }
+  }
+  //send user to homepage of news list
+  const backToList = async (e) => {
+    history.push("/news");
   }
   return (
     <div>
@@ -49,6 +53,13 @@ const NewsEditPage = (e) => {
             <Navbar />
           </div>
           <div className="container">
+            <div>
+              <button type="submit"
+                onClick={backToList}
+                className="goBackToNewsList btn btn-primary">
+                Go back to news list
+              </button>
+            </div>
             <div className="card" >
               <div className="card-body">
                 <h6 className="card-subtitle mb-2 ">
@@ -56,16 +67,15 @@ const NewsEditPage = (e) => {
                 </h6>
                 <hr></hr>
 
-                <h4 className=" text-primary"
-                  contentEditable="true"
-                  onInput={e => setUpdatedBody(e.target.value)}
-                >
-                  {selectedNews.news.news_body}
-                </h4>
+                <input type="text"
+                  value={updatedBody}
+                  onChange={(e) => setUpdatedBody(e.target.value)} />
+
                 <hr></hr>
+
                 <button type="submit"
                   onClick={submitEdit}
-                  className="btn btn-primary">
+                  className="login_button btn btn-primary">
                   Submit Edit
                 </button>
               </div>

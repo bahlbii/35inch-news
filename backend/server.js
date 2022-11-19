@@ -138,13 +138,9 @@ app.delete("/api/news/:id", async (req, res) => {
   }
 });
 
-//POST ROUTE: add a rating to a news toFix
+//POST ROUTE: add a update to a news 
 app.post("/api/news/:id/editNews", async (req, res) => {
   try {
-    // const singleRating = await db.query(
-    //   "INSERT INTO Ratings (news_id, news_body, news_author) VALUES ($1, $2, $3) RETURNING *;",
-    //   [req.params.news_id, req.body.news_body, req.body.news_author]
-    // );
     const updateNews = await db.query(
       "UPDATE news_table SET news_body = $1 WHERE news_id = $2 RETURNING *;",
       [req.body.news_body, req.params.id]
@@ -153,10 +149,10 @@ app.post("/api/news/:id/editNews", async (req, res) => {
     res.status(201).json({
       status: "success",
       data: {
-        rating0: updateNews.rows[0],
+        updatedNews: updateNews.rows[0].news_body,
       },
     });
-    console.log(status);
+    console.log(updateNews.rows[0].news_body);
   } catch (err) {
     console.log(err);
   }

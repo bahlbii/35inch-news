@@ -34,7 +34,6 @@ body{
     background-color: transparent;
 }
 .btn-link:hover {
-    font-weight: 400;
     color: #fab513;
     text-decoration: none;
 }
@@ -50,11 +49,15 @@ body{
 }
 .tableHeader{
     background: #171515;
-    border: none;
+    border-color: transparent;
     
 }
 .registration{
     border-color: red;
+}
+.goBackToNewsList {
+    color: #fff;
+    margin-left: auto;
 }
 /* .myTable{
     border-top: none;

@@ -8,7 +8,7 @@ import './style.css'
 const NewsList = (props) => {
     const { news, setNews } = useContext(NewsContext);
     let history = useHistory();
-    const {id } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,7 +28,7 @@ const NewsList = (props) => {
         history.push(`/news/${news_id}`);
     }
     //add news button
-    const handleAddNews = async (e) => {
+    const handleAddNews = async () => {
         history.push('/news/addNews')
     }
     //delete news button
@@ -63,7 +63,7 @@ const NewsList = (props) => {
                     </div>
                     <table className="table table-bordered table-hover table-striped table-dark">
                         <thead className='tableHeader'>
-                            <tr className="tableHeader">
+                            <tr >
                                 <th scope='col'>ID</th>
                                 <th scope='col' className="w-75">News</th>
                                 <th scope='col' className="w-auto">Author</th>
@@ -73,7 +73,7 @@ const NewsList = (props) => {
                         </thead>
                         <tbody >
 
-                            {news && news.map(news => {
+                            {news && news.map((news) => {
                                 return (
                                     <tr key={news.news}>
                                         <td>{news.news_id}</td>
@@ -82,7 +82,7 @@ const NewsList = (props) => {
                                         <td><button className="btn btn-link"
                                             onClick={() => handleEditButton(news.news_id)}
                                         >
-                                            Edit <img src='vector-pen.svg'/>
+                                            Edit
                                         </button>
                                         </td>
                                         <td><button className="btn btn-link"
