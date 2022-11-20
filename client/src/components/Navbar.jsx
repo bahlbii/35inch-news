@@ -1,10 +1,10 @@
 import React from 'react'
-import './style.css' 
+import './style.css'
 import { useHistory } from 'react-router-dom';
 
 function Navbar() {
 
-    
+
     let history = useHistory();
     const toLogin = async () => {
         history.push("/login")
@@ -13,44 +13,40 @@ function Navbar() {
         history.push("/register")
     }
 
+    const myLogoClick = async () => {
+        history.push("/news");
+    }
+
     return (
         <div className="container w-1">
             <div className="pb-1 w-100">
 
                 <nav className="navbar navbar-expand-lg navbar-light">
                     <div className="container-fluid">
-
-                        <img className="navbar-brand" alt='logo' src="https://35inch.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo_white.fc4d54d0.png&w=256&q=75" />
-                        {/* <button
-                            className="navbar-toggler"
-                            type="button"
-                            data-mdb-toggle="collapse"
-                            data-mdb-target="#navbarNav"
-                            aria-controls="navbarNav"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation"
-                        >
-                            <i className="fas fa-bars"></i>
-                        </button> */}
-
+                        <div className='myLogo'
+                            onClick={myLogoClick}>
+                            <img className="navbar-brand"
+                                alt='logo'
+                                src="https://35inch.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo_white.fc4d54d0.png&w=256&q=75"
+                            />
+                        </div>
                         <div className="d-flex align-items-center">
                             <button type="button"
                                 className="btn btn-link px-3 me-2"
                                 onClick={toLogin}
                             >
-
                                 Login
                             </button>
-                            <button type="button" 
-                            className="btn btn-primary me-3" 
-                            onClick={toRegister}>
+                            <button type="button"
+                                className="btn btn-primary me-3"
+                                onClick={toRegister}
+                            >
                                 Sign up
                             </button>
 
                         </div>
                     </div>
                 </nav>
-
             </div>
         </div >
     )
