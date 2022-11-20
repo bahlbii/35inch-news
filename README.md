@@ -39,15 +39,16 @@ client side:
   $ serve -s build
 ```
 ```
-## Techstack
+### Techstack - PERN
 ```
-> Hosted postgreSQL on elephantsql.com was used
-> React + bootstrap and MDBootstrap(material design with bootstarp) was used for frontend.
-> Nodejs for the backend and Axios for hitting API endpoints.
-> Postman was used to test all API calls
+1. Hosted postgreSQL on elephantsql.com was used
+2. React + bootstrap and MDBootstrap(material design with bootstarp) was used for frontend.
+3. Nodejs for the backend and Axios for hitting API endpoints.
+4. Postman was used to test all API calls
 ```
 
 ## Demo 
-![Login](./1homepage.png "Login page")
+
+<img src="client/demo-images/1homepage.png" alt="Alt text" title="Optional title">
 
 
