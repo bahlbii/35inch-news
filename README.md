@@ -38,13 +38,8 @@ To deploy this project run
   $ npm serve build
   $ serve -s build
 ```
-<<<<<<< HEAD
-```
-### Techstack - PERN
-=======
 
 ## PERN Stack
->>>>>>> 5e7facdc9c8db8bf78b9242d51813c771eef6f5b
 ```
 1. Hosted postgreSQL on elephantsql.com was used
 2. React + bootstrap and MDBootstrap(material design with bootstarp) was used for frontend.
@@ -53,11 +48,28 @@ To deploy this project run
 ```
 
 ## Demo 
-<<<<<<< HEAD
+#### Landing
+![home page](/client/demo-images/1homepage.png?raw=true "homepage")
 
-<img src="client/demo-images/1homepage.png" alt="Alt text" title="Optional title">
-=======
-![Login](./client/demo-images/1homepage.png "Login page")
->>>>>>> 5e7facdc9c8db8bf78b9242d51813c771eef6f5b
+#### Login
+![login](/client/demo-images/2login.png?raw=true "login")
+
+#### Register
+![register](/client/demo-images/3register.png?raw=true "register")
+
+#### Database
+![database](/client/demo-images/dbeaver_psqlViewer.png?raw=true "dbeaver")
+
+#### Postman tests
+![postman](/client/demo-images/postmanTests.png?raw=true "dbeaver")
+
+#### List news
+![postman](/client/demo-images/bahListNews.png?raw=true "dbeaver")
+
+#### Add news
+![postman](/client/demo-images/bahAddnews.png?raw=true "dbeaver")
+
+#### Edit news
+![postman](/client/demo-images/bahEdit.png?raw=true "dbeaver")
 
 
