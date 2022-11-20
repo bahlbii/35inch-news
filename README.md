@@ -10,36 +10,36 @@ To deploy this project run
 ```bash
   $ git clone https://github.com/bahlbii/35inch-news.git
 ```
-server side:
+### server side:
 ```bash
   $ git clone https://github.com/bahlbii/35inch-news.git
   $ cd backend
   $ npm install
   $ nodemon server
 ```
-client side:
+### client side:
 ```bash
   $ cd client
   $ npm install
   $ npm start
 ```
 
-To serve build of project
-server side:
+# To serve build of project
+### server side:
 ```bash
   $ git clone https://github.com/bahlbii/35inch-news.git
   $ cd backend
   $ npm install
   $ nodemon server
 ```
-client side:
+### client side:
 ```bash
   $ cd client
   $ npm serve build
   $ serve -s build
 ```
-```
-## Techstack
+
+## PERN Stack
 ```
 > Hosted postgreSQL on elephantsql.com was used
 > React + bootstrap and MDBootstrap(material design with bootstarp) was used for frontend.
@@ -48,6 +48,6 @@ client side:
 ```
 
 ## Demo 
-![Login](./1homepage.png "Login page")
+![Login](./client/demo-images/1homepage.png "Login page")
 
 
