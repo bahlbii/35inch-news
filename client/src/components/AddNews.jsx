@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import LoaderAPI from './LoaderAPI';
-import Navbar from './Navbar';
+import NavbarSecondary from './NavbarSecondary';
 
 const AddNews = () => {
 
@@ -34,7 +34,7 @@ const AddNews = () => {
 
     return (
         <><div>
-            <Navbar />
+            <NavbarSecondary/>
         </div>
             <div className='container'>
                 <div className="w-100 mt-5 mx-auto">

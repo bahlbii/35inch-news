@@ -2,8 +2,8 @@ import React, { useEffect, useContext } from 'react';
 import LoaderAPI from "./LoaderAPI";
 import { NewsContext } from '../context/NewsContext';
 import { useHistory, useParams } from "react-router-dom";
-import Navbar from './Navbar';
 import './style.css'
+import NavbarSecondary from './NavbarSecondary';
 
 const NewsList = (props) => {
     const { news, setNews } = useContext(NewsContext);
@@ -48,7 +48,7 @@ const NewsList = (props) => {
     return (
         <>
             <div>
-                <Navbar />
+                <NavbarSecondary />
             </div>
             <div className='container'>
                 <div className='list-group'>

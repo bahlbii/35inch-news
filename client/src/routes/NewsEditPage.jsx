@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { NewsContext } from "../context/NewsContext";
 import LoaderAPI from "../components/LoaderAPI";
-import Navbar from "../components/Navbar";
+import NavbarSecondary from "../components/NavbarSecondary";
 
 const NewsEditPage = (e) => {
 
@@ -51,7 +51,7 @@ const NewsEditPage = (e) => {
       {selectedNews && (
         <>
           <div>
-            <Navbar />
+            <NavbarSecondary />
           </div>
           <div className="container">
             <div>

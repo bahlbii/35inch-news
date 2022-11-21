@@ -47,9 +47,10 @@ app.post("/api/login", async (req, res) => {
       res.status(200).json({
         status: "success",
         data: {
-          user: loginUser.rows[0].username
+          user: loginUser.rows[0],
         },
       });
+      console.log(loginUser.rows[0])
     }
     else {
       res.status(404).json({
