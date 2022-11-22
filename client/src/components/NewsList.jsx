@@ -15,6 +15,9 @@ const NewsList = () => {
     const { news, setNews } = useContext(NewsContext);
 
     useEffect(() => {
+        if(getEmail == null || getPassword == null){
+            history.push("/");
+        }
         const fetchData = async () => {
             try {
                 const response = await LoaderAPI.get("/news");

@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { NewsContext } from "../context/NewsContext";
-import LoaderAPI from "../components/LoaderAPI";
-import NavbarSecondary from "../components/NavbarSecondary";
+import LoaderAPI from "./LoaderAPI";
+import NavbarSecondary from "./NavbarSecondary";
 
 const NewsEditPage = (e) => {
 
