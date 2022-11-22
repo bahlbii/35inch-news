@@ -35,30 +35,20 @@ function NavbarSecondary() {
                             />
                         </div>
                         <div className="d-flex align-items-center">
-                            {/* <button type="button"
-                                className="btn btn-link px-3 me-2"
-                                onClick={toLogin}
-                            >
-                                User: {getEmail}
-                            </button> */}
+                            
                             <Dropdown>
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                                     {getEmail}
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1"
+                                    <Dropdown.Item href=""
+                                    ariant="success"
                                     onClick={toSignOut} >
                                     Sign Out
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            {/* <button type="button"
-                                className="btn btn-primary me-3"
-                                onClick={toSignOut}
-                            >
-                                Sign Out
-                            </button> */}
 
                         </div>
                     </div>

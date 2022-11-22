@@ -10,14 +10,22 @@ const NewsEditPage = (e) => {
 
   const { id } = useParams();
   const { selectedNews, setSelectedNews } = useContext(NewsContext);
+
   const [updatedBody, setUpdatedBody] = useState(() => selectedNews);
+  const [updatedTitle, setUpdatedTitle] = useState(() => selectedNews);
+  const [updatedAuthor, setUpdatedAuthor] = useState(() => selectedNews);
+  const [updatedCategory, setUpdatedCategory] = useState(() => selectedNews)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await LoaderAPI.get(`/news/${id}`);
         setSelectedNews(response.data.data);
+
+        setUpdatedTitle(response.data.data.news.news_title);
         setUpdatedBody(response.data.data.news.news_body);
+        setUpdatedAuthor(response.data.data.news.news_author);
+        setUpdatedCategory(response.data.data.news.news_category);
 
       } catch (err) {
         console.log(err);
@@ -25,17 +33,24 @@ const NewsEditPage = (e) => {
     };
 
     fetchData();
-  }, [id, setSelectedNews]);
+  }, []);
 
   const submitEdit = async (e) => {
     e.preventDefault();
     try {
-      const response = await LoaderAPI.post(`/news/${id}/editNews`, {
-        id,
-        news_body: updatedBody,
-      });
-      console.log(response)
+      // console.log(`id: ${id}`);
+      // console.log(`updatedTitle: ${updatedTitle}`);
+      // console.log(`updatedBody: ${updatedBody}`);
+      // console.log(`updatedAuthor: ${updatedAuthor}`);
+      // console.log(`updatedCategory: ${updatedCategory}`);
 
+      const response = await LoaderAPI.post(`/news/${id}/editNews`, {
+        news_id: id,
+        news_title: updatedTitle,
+        news_body: updatedBody,
+        news_author: updatedAuthor,
+        news_category: updatedCategory
+      });
 
       history.push("/news")
     } catch (err) {
@@ -46,6 +61,7 @@ const NewsEditPage = (e) => {
   const backToList = async (e) => {
     history.push("/news");
   }
+
   return (
     <div>
       {selectedNews && (
@@ -61,23 +77,60 @@ const NewsEditPage = (e) => {
                 Go back to news list
               </button>
             </div>
+
             <div className="card" >
               <div className="card-body">
-                <h6 className="card-subtitle mb-2 ">
-                  {selectedNews.news.news_id} - click on news to edit.
-                </h6>
-                <hr></hr>
+                <div className="form-outline mb-4">
+                  <label className="form-label" htmlFor="textAreaExample6">
+                    Title
+                  </label>
+                  <textarea className="form-control"
+                    id="inputBorders"
+                    rows="1"
+                    value={updatedTitle}
+                    onChange={(e) => setUpdatedTitle(e.target.value)}></textarea>
+                </div>
 
-                <input type="text"
-                  id="inputBorders"
-                  value={updatedBody}
-                  onChange={(e) => setUpdatedBody(e.target.value)} />
+                <div className="form-outline mb-4">
+                  <label className="form-label" For="textAreaExample6"> News </label>
+                  <textarea className="form-control"
+                    id="inputBorders"
+                    rows="3"
+                    value={updatedBody}
+                    onChange={(e) => setUpdatedBody(e.target.value)}></textarea>
+                </div>
 
-                <hr></hr>
+                <div className="form-outline mb-4">
+                  <label className="form-label" htmlFor="textAreaExample6">Author </label>
+                  <textarea className="form-control"
+                    id="inputBorders"
+                    rows="1"
+                    value={updatedAuthor}
+                    onChange={(e) => setUpdatedAuthor(e.target.value)}></textarea>
+                </div>
+
+                <div class="form-outline w-50 mb-4">
+                  <label class="form-label" for="textAreaExample6">
+                    Category
+                  </label>
+                  <select
+                    value={updatedCategory}
+                    onChange={(e) => setUpdatedCategory(e.target.value)}
+                    className="inputBorders custom-select"
+                  >
+                    <option value="General">General</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Cuisine">Cuisine</option>
+                    <option value="Politics">Politics</option>
+                  </select>
+                </div>
+                {/* </div>   */}
 
                 <button type="submit"
                   onClick={submitEdit}
-                  className="login_button btn btn-primary">
+                  className="login_button btn btn-primary"
+                >
                   Submit Edit
                 </button>
               </div>

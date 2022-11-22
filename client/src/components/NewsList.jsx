@@ -5,10 +5,12 @@ import { useHistory, useParams } from "react-router-dom";
 import './style.css'
 import NavbarSecondary from './NavbarSecondary';
 
-const NewsList = (props) => {
-    const { news, setNews } = useContext(NewsContext);
+const NewsList = () => {
+    
     let history = useHistory();
-    const { id } = useParams();
+    // const { id } = useParams();
+
+    const { news, setNews } = useContext(NewsContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,7 +30,7 @@ const NewsList = (props) => {
         history.push(`/news/${news_id}`);
     }
     //add news button
-    const handleAddNews = async () => {
+    const goToAddNews = async () => {
         history.push('/news/addNews')
     }
     //delete news button
@@ -55,7 +57,7 @@ const NewsList = (props) => {
                     <div className='mb-2'>
                         <button
                             type="submit"
-                            onClick={handleAddNews}
+                            onClick={goToAddNews}
                             className="btn btn-primary float-right"
                         >
                             Add News
@@ -65,8 +67,10 @@ const NewsList = (props) => {
                         <thead className='tableHeader'>
                             <tr >
                                 <th scope='col'>ID</th>
-                                <th scope='col' className="w-75">News</th>
-                                <th scope='col' className="w-auto">Author</th>
+                                <th scope='col' className="w-75">Title</th>
+                                <th scope='col' className="w-auto">News</th>
+                                <th scope='col' className="w-75">Author</th>
+                                <th scope='col' className="w-auto">Category</th>
                                 <th scope='col' className="w-auto"></th>
                                 <th scope='col' className="w-auto"></th>
                             </tr>
@@ -77,8 +81,10 @@ const NewsList = (props) => {
                                 return (
                                     <tr key={news.news}>
                                         <td>{news.news_id}</td>
+                                        <td>{news.news_title}</td>
                                         <td>{news.news_body}</td>
                                         <td>{news.news_author}</td>
+                                        <td>{news.news_category}</td>
                                         <td><button className="btn btn-link"
                                             onClick={() => handleEditButton(news.news_id)}
                                         >

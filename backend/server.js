@@ -20,7 +20,7 @@ app.post("/api/register", async (req, res) => {
   const createUsersTable = await db.query(sqlUsersTable, null);
 
   //create necessary tables at first
-  let sqlNewsTable = 'CREATE TABLE IF NOT EXISTS news_table (news_id SERIAL NOT NULL PRIMARY KEY, news_body VARCHAR(50) NOT NULL, news_author VARCHAR(50) NOT NULL);';
+  let sqlNewsTable = 'CREATE TABLE IF NOT EXISTS news_table (news_id SERIAL NOT NULL PRIMARY KEY, news_title TEXT NOT NULL, news_body TEXT NOT NULL, news_author VARCHAR(50) NOT NULL, news_category VARCHAR(8) NOT NULL);';
   const createNewsTable = await db.query(sqlNewsTable, null);
 
   //send username and password as a query parameters
@@ -94,6 +94,7 @@ app.get("/api/news/:id", async (req, res) => {
         news: aNews.rows[0]
       }
     });
+    console.log(aNews.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
@@ -102,18 +103,20 @@ app.get("/api/news/:id", async (req, res) => {
 //POST ROUTE: add a news
 app.post("/api/news/addNews", async (req, res) => {
 
-  const news_body = req.body["news_body"];
+  const news_title = req.body["news_title"];
   const news_author = req.body["news_author"];
+  const news_body = req.body["news_body"];
+  const news_category = req.body["news_category"];
   try {
-    const singleRating = await db.query(
-      "INSERT INTO news_table (news_body, news_author) VALUES ($1, $2);",
-      [news_body, news_author]
+    const addedNews = await db.query(
+      "INSERT INTO news_table (news_title, news_body, news_author, news_category) VALUES ($1, $2, $3, $4);",
+      [news_title, news_body, news_author, news_category]
     );
 
     res.status(201).json({
       status: "success",
       data: {
-        rating: singleRating.rows[0],
+        addedNews: addedNews.rows[0],
       },
     });
   } catch (err) {
@@ -143,17 +146,17 @@ app.delete("/api/news/:id", async (req, res) => {
 app.post("/api/news/:id/editNews", async (req, res) => {
   try {
     const updateNews = await db.query(
-      "UPDATE news_table SET news_body = $1 WHERE news_id = $2 RETURNING *;",
-      [req.body.news_body, req.params.id]
+      "UPDATE news_table SET news_title = $1, news_body = $2, news_author = $3, news_category = $4 WHERE news_id = $5 RETURNING *;",
+      [req.body.news_title, req.body.news_body, req.body.news_author, req.body.news_category, req.body.news_id]
     )
 
     res.status(201).json({
       status: "success",
       data: {
-        updatedNews: updateNews.rows[0].news_body,
+        updatedNews: updateNews.rows[0],
       },
     });
-    console.log(updateNews.rows[0].news_body);
+    console.log(`updatedNews: ${updateNews.rows[0]}`);
   } catch (err) {
     console.log(err);
   }

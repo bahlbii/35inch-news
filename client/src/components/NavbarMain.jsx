@@ -14,7 +14,7 @@ function Navbar() {
     }
 
     const myLogoClick = async () => {
-        history.push("/news");
+        history.push("/");
     }
 
     return (
