@@ -92,7 +92,7 @@ const NewsEditPage = (e) => {
                 </div>
 
                 <div className="form-outline mb-4">
-                  <label className="form-label" For="textAreaExample6"> News </label>
+                  <label className="form-label" htmlFor="textAreaExample6"> News </label>
                   <textarea className="form-control"
                     id="inputBorders"
                     rows="3"
@@ -110,7 +110,7 @@ const NewsEditPage = (e) => {
                 </div>
 
                 <div class="form-outline w-50 mb-4">
-                  <label class="form-label" for="textAreaExample6">
+                  <label class="form-label" htmlFor="textAreaExample6">
                     Category
                   </label>
                   <select

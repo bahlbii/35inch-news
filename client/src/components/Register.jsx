@@ -51,7 +51,6 @@ const Register = () => {
               <input type="password"
                 onChange={(e) => { setPasswordRegister(e.target.value) }}
                 className="form-control"
-                id="inputBorders"
                 placeholder="Password" />
             </div>
 

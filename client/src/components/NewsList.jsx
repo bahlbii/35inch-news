@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import LoaderAPI from "./LoaderAPI";
 import { NewsContext } from '../context/NewsContext';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import './style.css'
 import NavbarSecondary from './NavbarSecondary';
 
@@ -15,7 +15,7 @@ const NewsList = () => {
     const { news, setNews } = useContext(NewsContext);
 
     useEffect(() => {
-        if(getEmail == null || getPassword == null){
+        if (getEmail == null || getPassword == null) {
             history.push("/");
         }
         const fetchData = async () => {
@@ -58,60 +58,61 @@ const NewsList = () => {
                 <NavbarSecondary />
             </div>
             <div className='container'>
-                <div className='list-group'>
-                    <div className='mb-2'>
-                        <button
-                            type="submit"
-                            onClick={goToAddNews}
-                            className="btn btn-primary float-right"
-                        >
-                            Add News
-                        </button>
-                    </div>
-                    <table className="table table-bordered table-hover table-striped table-dark">
-                        <thead className='tableHeader'>
-                            <tr >
-                                <th scope='col'>ID</th>
-                                <th scope='col' className="w-75">Title</th>
-                                <th scope='col' className="w-auto">News</th>
-                                <th scope='col' className="w-75">Author</th>
-                                <th scope='col' className="w-auto">Category</th>
-                                <th scope='col' className="w-auto"></th>
-                                <th scope='col' className="w-auto"></th>
-                            </tr>
-                        </thead>
-                        <tbody >
+                <div className='mb-2'>
+                    <button
+                        type="submit"
+                        onClick={goToAddNews}
+                        className="btn btn-primary float-right"
+                    >
+                        Add News
+                    </button>
+                </div>
+                <table className="table"><thead><tr><th scope='col'></th></tr></thead></table>
+                <div className="row">
+                    {news && news.map((news) => {
+                        return (
+                            <div className="col-lg-6 mb-4" key={news.news}>
+                                <div className="card">
+                                    <div className='card-header'>
+                                        {/* <div className='cardHeaderAuthorPar'> */}
+                                        <p className='cardHeaderAuthor'>
+                                            Author: {news.news_author}
+                                        </p>
+                                        {/* </div> */}
+                                        {/* <div className='cardHeaderCategoryArea'> */}
 
-                            {news && news.map((news) => {
-                                return (
-                                    <tr key={news.news}>
-                                        <td>{news.news_id}</td>
-                                        <td>{news.news_title}</td>
-                                        <td>{news.news_body}</td>
-                                        <td>{news.news_author}</td>
-                                        <td>{news.news_category}</td>
-                                        <td><button className="btn btn-link"
-                                            onClick={() => handleEditButton(news.news_id)}
-                                        >
+                                        <span><p className="cardHeaderCategory">
+                                            Category: {news.news_category}
+                                        </p></span>
+                                        {/* </div> */}
+                                    </div>
+                                    <div className="card-body">
+                                        <h3 className="card-title">{news.news_title}</h3>
+                                        <p className="card-text">
+                                            {news.news_body}
+                                        </p>
+
+
+                                        <button className="cardEditButtons btn btn-primary me-3"
+                                            onClick={() => handleEditButton(news.news_id)}>
                                             Edit
                                         </button>
-                                        </td>
-                                        <td><button className="btn btn-link"
+
+                                        <button className="cardEditButtons btn btn-primary me-3"
                                             onClick={() => handleDeleteNews(news.news_id)}
                                         >
                                             Delete
                                         </button>
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
 
 
-
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
+
         </>
     )
 }

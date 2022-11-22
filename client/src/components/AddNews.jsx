@@ -11,7 +11,7 @@ const AddNews = () => {
     const [news_title, setNews_title] = useState("");
     const [news_body, setNews_body] = useState("");
     const [news_author, setNews_author] = useState("");
-    const [news_category, setNews_category] = useState(() => "General");
+    const [news_category, setNews_category] = useState(() => "Tech");
 
     //get state from form, send it to database as query
     const addnews = async (e) => {
@@ -72,7 +72,7 @@ const AddNews = () => {
                                 >
                                 </textarea>
                             </div>
-                            <div class="form-outline w-50 mb-4">
+                            <div class="newsAuthorTextArea form-outline mb-4">
                                 <label class="form-label" for="textAreaExample6">
                                     Author
                                 </label>
@@ -85,7 +85,7 @@ const AddNews = () => {
                                 </textarea>
                             </div>
 
-                            <div class="form-outline w-50 mb-4">
+                            <div class="newsCategoryTextarea form-outline mb-4">
                                 <label class="form-label" for="textAreaExample6">
                                     Category
                                 </label>
@@ -94,7 +94,7 @@ const AddNews = () => {
                                     onChange={(e) => { setNews_category(e.target.value) }}
                                     className="inputBorders custom-select"
                                 >
-                                    <option value="General" selected="selected">General</option>
+                                    <option value="General" >General</option>
                                     <option value="Tech">Tech</option>
                                     <option value="Fashion">Fashion</option>
                                     <option value="Cuisine">Cuisine</option>

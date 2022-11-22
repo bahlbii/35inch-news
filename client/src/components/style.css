@@ -33,25 +33,29 @@ body {
 
 .btn-success {
     color: #fff;
-    background-color: transparent; 
+    background-color: transparent;
     border-color: #fab513;
 }
+
 .btn-success:hover {
     color: #fff;
     background-color: #218838;
     /* border-color: #1e7e34; */
 }
+
 .dropdown-toggle:hover {
     color: #fff;
     background-color: #fab513;
 }
+
 .btn-success:not(:disabled):not(.disabled).active,
-.btn-success:not(:disabled):not(.disabled):active, 
-.show>.btn-success.dropdown-toggle{
+.btn-success:not(:disabled):not(.disabled):active,
+.show>.btn-success.dropdown-toggle {
     color: #fff;
     background-color: #fab513;
     border-color: #fab513;
 }
+
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -68,13 +72,14 @@ body {
     list-style: none;
     background-color: #fab513;
     background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
+    border: 1px solid rgba(0, 0, 0, .15);
     border-radius: 0.25rem;
 }
 
 .btn-success:not(:disabled):not(.disabled).active,
-.btn-success:not(:disabled):not(.disabled):active, 
-.show>.btn-success.dropdown-toggle {
+.btn-success:not(:disabled):not(.disabled):active,
+.show>.btn-success.dropdown-toggle,
+.btn-success:hover {
     color: #fff;
     background-color: #fab513;
     border-color: #fab513;
@@ -119,22 +124,65 @@ body {
     border-color: #fab513;
 }
 
-.tableHeader {
-    background: #171515;
-    border-color: transparent;
-
-}
-
 .goBackToNewsList {
     color: #fff;
     margin-left: auto;
 }
 
 .myLogo {
-    cursor: pointer;    
+    cursor: pointer;
 }
 
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    color: #000;
+    background-clip: border-box;
+    border: 1px solid;
+    border-color: #fab513;
+    border-radius: .25rem;
+}
 
-/* .myTable{
-    border-top: none;
-} */
+.cardEditButtons {
+    color: #000;
+    float: right;
+    margin-left: .25rem;
+}
+
+.newsCategoryTextarea {
+    float: right;
+    width: 48%;
+}
+
+.cardHeaderAuthor {
+    float: left;
+    padding-left: 0.1rem;
+    color: #fff;
+}
+
+.cardHeaderCategory {
+    float: right;
+    padding-right: 1.5rem;
+    color: #fff;
+}
+
+.cardHeaderAuthorPar {
+    border: 1px solid;
+    border-color: red;
+    border-radius: .25rem;
+}
+
+.card-header {
+    position: relative;
+    background-color: #fab513;
+    padding: 0.1rem 0.1rem;
+}
+.card-header p {
+    margin: 0;
+}
