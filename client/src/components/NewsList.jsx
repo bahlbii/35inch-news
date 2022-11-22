@@ -6,9 +6,11 @@ import './style.css'
 import NavbarSecondary from './NavbarSecondary';
 
 const NewsList = () => {
-    
+
     let history = useHistory();
-    // const { id } = useParams();
+
+    const getEmail = localStorage.getItem("email");
+    const getPassword = localStorage.getItem("password");
 
     const { news, setNews } = useContext(NewsContext);
 
@@ -102,9 +104,11 @@ const NewsList = () => {
                             })}
                         </tbody>
                     </table>
+
+
+
                 </div>
             </div>
-
         </>
     )
 }

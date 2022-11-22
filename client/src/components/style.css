@@ -36,6 +36,11 @@ body {
     background-color: transparent; 
     border-color: #fab513;
 }
+.btn-success:hover {
+    color: #fff;
+    background-color: #218838;
+    /* border-color: #1e7e34; */
+}
 .dropdown-toggle:hover {
     color: #fff;
     background-color: #fab513;
@@ -128,6 +133,7 @@ body {
 .myLogo {
     cursor: pointer;    
 }
+
 
 /* .myTable{
     border-top: none;

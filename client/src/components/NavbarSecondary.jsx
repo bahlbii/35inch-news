@@ -43,7 +43,7 @@ function NavbarSecondary() {
 
                                 <Dropdown.Menu>
                                     <Dropdown.Item href=""
-                                    ariant="success"
+                                    variant="success"
                                     onClick={toSignOut} >
                                     Sign Out
                                     </Dropdown.Item>
