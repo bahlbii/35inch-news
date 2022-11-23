@@ -2,8 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import LoaderAPI from "./LoaderAPI";
 import { NewsContext } from '../context/NewsContext';
 import { useHistory } from "react-router-dom";
-import './style.css'
+
 import NavbarSecondary from './NavbarSecondary';
+import './style.css'
 
 const NewsList = () => {
 
@@ -42,10 +43,11 @@ const NewsList = () => {
     const handleDeleteNews = async (news_id) => {
         const id = news_id;
         try {
+            /* eslint-disable no-unused-vars */
             const response = await LoaderAPI.delete(`/news/${news_id}`, {
                 id
             });
-
+            /* eslint-disable no-unused-vars */
         } catch (err) {
             console.err(err);
         }
@@ -74,17 +76,12 @@ const NewsList = () => {
                             <div className="col-lg-6 mb-4" key={news.news}>
                                 <div className="card">
                                     <div className='card-header'>
-                                        {/* <div className='cardHeaderAuthorPar'> */}
                                         <p className='cardHeaderAuthor'>
                                             Author: {news.news_author}
                                         </p>
-                                        {/* </div> */}
-                                        {/* <div className='cardHeaderCategoryArea'> */}
-
                                         <span><p className="cardHeaderCategory">
                                             Category: {news.news_category}
                                         </p></span>
-                                        {/* </div> */}
                                     </div>
                                     <div className="card-body">
                                         <h3 className="card-title">{news.news_title}</h3>
