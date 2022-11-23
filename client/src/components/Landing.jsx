@@ -1,12 +1,11 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import Navbar from './NavbarMain';
+import NavbarMain from './NavbarMain';
 
 const Landing = () => {
     
     return (
         <div>
-            <Navbar/>
+            <NavbarMain/>
         </div>
        
     )

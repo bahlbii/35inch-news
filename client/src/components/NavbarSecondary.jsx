@@ -1,16 +1,21 @@
 import React from 'react'
 import './style.css'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 function NavbarSecondary() {
 
-    const getEmail = localStorage.getItem("email");
+    const getUsername = localStorage.getItem("username");
     const getPassword = localStorage.getItem("password");
 
+    const { user_id } = useParams();
+
     let history = useHistory();
-    const toLogin = async () => {
-        history.push("/login")
+    // const toLogin = async () => {
+    //     history.push("/login")
+    // }
+    const toUserProfile = async (e) => {
+        history.push(`/user/:${user_id}`)
     }
     const toSignOut = async () => {
         localStorage.clear();
@@ -35,17 +40,22 @@ function NavbarSecondary() {
                             />
                         </div>
                         <div className="d-flex align-items-center">
-                            
+
                             <Dropdown>
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                    {getEmail}
+                                    {getUsername}
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href=""
-                                    variant="success"
-                                    onClick={toSignOut} >
-                                    Sign Out
+                                    <Dropdown.Item href="/user"
+                                        variant="success"
+                                        onClick={() => toUserProfile(user_id)} >
+                                        Profile
+                                    </Dropdown.Item>
+                                    <Dropdown.Item
+                                        variant="success"
+                                        onClick={toSignOut} >
+                                        Sign Out
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>

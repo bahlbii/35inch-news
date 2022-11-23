@@ -5,8 +5,9 @@ import Register from './components/Register';
 import Login from './components/Login';
 import AddNews from './components/AddNews';
 import Landing from './components/Landing';
-import NewsEditPage from './components/NewsEditPage';
+import EditNews from './components/EditNews';
 import NewsList from './components/NewsList';
+import UserProfile from './components/UserProfile';
 
 const App = () => {
 
@@ -15,12 +16,13 @@ const App = () => {
             <div>
                 <Router>
                     <Switch>
-                        <Route exact path="/" component={Landing} />
-                        <Route exact path="/login" component={Login} />
-                        <Route exact path="/register" component={Register} />
-                        <Route exact path="/news/addNews" component={AddNews} />
-                        <Route exact path="/news" component={NewsList} />
-                        <Route exact path="/news/:id" component={NewsEditPage} />
+                        <Route exact path="/" component={ Landing } />
+                        <Route exact path="/login" component={ Login } />
+                        <Route exact path="/register" component={ Register } />
+                        <Route exact path="/news/addNews" component={ AddNews } />
+                        <Route exact path="/news" component={ NewsList } />
+                        <Route exact path="/news/:id" component={ EditNews } />
+                        <Route exact path="/user" component={ UserProfile } />
                     </Switch>
                 </Router>
             </div>

@@ -8,24 +8,37 @@ const Register = () => {
   let history = useHistory();
 
   //state for controlling registration process
-  const [usernameRegister, setUsernameRegister] = useState("");
+  const [userNameRegister, setUserNameRegister] = useState("");
+  const [userEmailRegister, setUserEmailRegister] = useState("");
   const [passwordRegister, setPasswordRegister] = useState("");
+
+  //registration help
+  const [messageForUser, setMessageForUser] = useState("");
 
 
   //registration function
   const register = async (e) => {
     e.preventDefault(); //prevent page from refreshing
     try {
-      const response = await LoaderAPI.post(`/register`, {
-        usernameRegister,
-        passwordRegister
-      });
 
+      //regex expression to check if emain input is correct
+      const validRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
+      if (userEmailRegister.match(validRegex) && passwordRegister !== '') {
+        const response = await LoaderAPI.post(`/register`, {
+          userNameRegister,
+          userEmailRegister,
+          passwordRegister
+        });
+
+        history.push("/login")
+      }
+      else {
+        setMessageForUser("Error. Email or password invalid.");
+      }
     } catch (err) {
       console.error(err.message);
     }
-    history.push("/login")
   }
 
 
@@ -36,24 +49,32 @@ const Register = () => {
       <div className="w-50 p-5 mx-auto align-items-center">
         <div className="registration p-5">
           <form className='shadow-lg p-5 mb-5 bg-white rounded '>
+
+          <div className="form-group">
+              <label htmlFor="email">Username</label>
+              <input type="email"
+                onChange={(e) => { setUserNameRegister(e.target.value) }}
+                className="inputBorders form-control"
+                placeholder="Enter username" />
+            </div>
+
             <div className="form-group">
               <label htmlFor="email">Email address</label>
               <input type="email"
-                onChange={(e) => { setUsernameRegister(e.target.value) }}
-                className="form-control"
-                id="inputBorders"
-                aria-describedby="emailHelp"
+                onChange={(e) => { setUserEmailRegister(e.target.value) }}
+                className="inputBorders form-control"
                 placeholder="Enter email" />
-
             </div>
+
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input type="password"
                 onChange={(e) => { setPasswordRegister(e.target.value) }}
-                className="form-control"
+                className="inputBorders form-control"
                 placeholder="Password" />
             </div>
 
+            <div><h5>{messageForUser}</h5></div>
             <button type="submit"
               onClick={register}
               className="login_button btn btn-primary">
@@ -62,7 +83,7 @@ const Register = () => {
           </form>
         </div>
       </div>
-      </>
+    </>
 
   )
 }

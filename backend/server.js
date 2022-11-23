@@ -11,21 +11,22 @@ app.use(express.json());
 //POST ROUTE to register user
 app.post("/api/register", async (req, res) => {
 
-  //get username and password from the request body of the register api call
-  const username = req.body["usernameRegister"];
+  //get userEmail and password from the request body of the register api call
+  const userName = req.body["userNameRegister"];
+  const userEmail = req.body["userEmailRegister"];
   const password = req.body["passwordRegister"];
 
   //create necessary tables at first
-  let sqlUsersTable = 'CREATE TABLE IF NOT EXISTS users (user_id SERIAL NOT NULL PRIMARY KEY, username VARCHAR(50) NOT NULL, password VARCHAR(50) NOT NULL);';
+  let sqlUsersTable = 'CREATE TABLE IF NOT EXISTS users (user_id SERIAL NOT NULL PRIMARY KEY, userName VARCHAR(50) NOT NULL, userEmail VARCHAR(50) NOT NULL, password VARCHAR(50) NOT NULL);';
   const createUsersTable = await db.query(sqlUsersTable, null);
 
   //create necessary tables at first
   let sqlNewsTable = 'CREATE TABLE IF NOT EXISTS news_table (news_id SERIAL NOT NULL PRIMARY KEY, news_title TEXT NOT NULL, news_body TEXT NOT NULL, news_author VARCHAR(50) NOT NULL, news_category VARCHAR(8) NOT NULL);';
   const createNewsTable = await db.query(sqlNewsTable, null);
 
-  //send username and password as a query parameters
-  const regUser = await db.query("INSERT INTO users ( username, password) VALUES ($1, $2)", [
-    username, password
+  //send userEmail and password as a query parameters
+  const regUser = await db.query("INSERT INTO users ( userName, userEmail, password) VALUES ($1, $2, $3)", [
+    userName, userEmail, password
   ])
 
   res.send("success")
@@ -33,15 +34,15 @@ app.post("/api/register", async (req, res) => {
 
 //Post Route to login
 app.post("/api/login", async (req, res) => {
-  //get username and password from the request body of the login api call
-  const username = req.body.username;
+  //get userEmail and password from the request body of the login api call
+  const usercred = req.body.userEmail;
   const password = req.body.password;
 
   try {
     // login page
-    let sqlLogin = 'SELECT * FROM users WHERE username = $1 AND password = $2;'
+    let sqlLogin = 'SELECT * FROM users WHERE (useremail = $1 OR username = $1) AND password = $2;'
     const loginUser = await db.query(sqlLogin, [
-      username, password]);
+      usercred, password]);
 
     if (loginUser.rowCount === 1) {
       res.status(200).json({
@@ -100,6 +101,28 @@ app.get("/api/news/:id", async (req, res) => {
   }
 });
 
+//GET ROUTE: get a user with id
+app.get("/api/user/:id", async (req, res) => {
+  try {
+
+    //get user data
+    const { id } = req.params;
+    console.log(`id: ${id}`)
+    const aUser = await db.query("SELECT * FROM users WHERE user_id = $1", [
+      1
+    ]);
+    res.status(200).json({
+      status: "success",
+      data: {
+        user: aUser.rows[0]
+      }
+    });
+    console.log(aUser.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 //POST ROUTE: add a news
 app.post("/api/news/addNews", async (req, res) => {
 
@@ -107,6 +130,7 @@ app.post("/api/news/addNews", async (req, res) => {
   const news_author = req.body["news_author"];
   const news_body = req.body["news_body"];
   const news_category = req.body["news_category"];
+
   try {
     const addedNews = await db.query(
       "INSERT INTO news_table (news_title, news_body, news_author, news_category) VALUES ($1, $2, $3, $4);",
@@ -161,6 +185,25 @@ app.post("/api/news/:id/editNews", async (req, res) => {
     console.log(err);
   }
 });
+//POST ROUTE: update user profile 
+// app.post("/api/news/editUser", async (req, res) => {
+//   try {
+//     const updateNews = await db.query(
+//       "UPDATE users SET username = $1, password = $2 WHERE user_id = $3 RETURNING *;",
+//       [req.body.username, req.body.password, req.body.user_id]
+//     )
+
+//     res.status(201).json({
+//       status: "success",
+//       data: {
+//         updatedNews: updateNews.rows[0],
+//       },
+//     });
+//     console.log(`updatedNews: ${updateNews.rows[0]}`);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 // use .env file to get the default port
 const port = process.env.PORT || 8000;

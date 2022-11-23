@@ -4,13 +4,14 @@ import LoaderAPI from './LoaderAPI';
 import Navbar from './NavbarMain';
 
 const Login = () => {
-  const emailRef = useRef();
+  //local storage
+  const usernameRef = useRef();
   const passwordRef = useRef();
 
   let history = useHistory();
 
   //state for controlling login process
-  const [usernameLogin, setUsernameLogin] = useState("");
+  const [userEmailLogin, setuserEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
 
   //Message for user
@@ -21,18 +22,18 @@ const Login = () => {
     e.preventDefault(); //prevent page from refreshing
     try {
       const response = await LoaderAPI.post(`/login`, {
-        username: usernameLogin,
+        userEmail: userEmailLogin,
         password: passwordLogin
       });
 
-      localStorage.setItem("email", `${response.data.data.user.username}`);
+      localStorage.setItem("username", `${response.data.data.user.username}`);
       localStorage.setItem("password", `${response.data.data.user.password}`);
 
       history.push("/news")
 
     } catch (err) {
       //set the message to be presented to user
-      setMessageForUser("Incorrect username or password.");
+      setMessageForUser("Incorrect userEmail or password.");
     }
   }
   //take user to regsiter page 
@@ -49,13 +50,12 @@ const Login = () => {
         <div className="registration p-5">
           <form className='shadow-lg p-5 mb-5 bg-white rounded '>
             <div className="form-group">
-              <label htmlFor="email">Email address</label>
+              <label htmlFor="email">Email or username</label>
               <input type="email"
-                ref={emailRef}
-                onChange={(e) => { setUsernameLogin(e.target.value) }}
+                ref={usernameRef}
+                onChange={(e) => { setuserEmailLogin(e.target.value) }}
                 className=" inputBorders form-control"
-                aria-describedby="emailHelp"
-                placeholder="Enter email" />
+                placeholder="Enter username or email" />
 
             </div>
             <div className="form-group">

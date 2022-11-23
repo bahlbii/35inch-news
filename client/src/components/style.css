@@ -155,7 +155,11 @@ body {
     margin-left: .25rem;
 }
 
-.newsCategoryTextarea {
+.newsAuthorTextArea, .userFirstName {
+    float: left;
+    width: 48%;
+}
+.newsCategoryTextarea, .userLastName {
     float: right;
     width: 48%;
 }
@@ -185,4 +189,15 @@ body {
 }
 .card-header p {
     margin: 0;
+}
+
+.profilePic{
+    background-color: red;
+    background-size: cover; 
+    /* height:480px;  */
+    padding-top:80px;
+}
+.profileForm{
+    float: right;
+    width: 60%;
 }

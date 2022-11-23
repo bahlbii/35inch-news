@@ -10,19 +10,20 @@ const NewsList = () => {
 
     let history = useHistory();
 
-    const getEmail = localStorage.getItem("email");
+    const getUsername = localStorage.getItem("username");
     const getPassword = localStorage.getItem("password");
 
     const { news, setNews } = useContext(NewsContext);
 
     useEffect(() => {
-        if (getEmail == null || getPassword == null) {
+        if (getUsername == null || getPassword == null) {
             history.push("/");
         }
         const fetchData = async () => {
             try {
                 const response = await LoaderAPI.get("/news");
                 setNews(response.data.data.news);
+                console.log(`setNews: ${response.data.data}`);
             } catch (err) {
                 console.error(err.message);
             }

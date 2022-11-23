@@ -4,7 +4,7 @@ import { NewsContext } from "../context/NewsContext";
 import LoaderAPI from "./LoaderAPI";
 import NavbarSecondary from "./NavbarSecondary";
 
-const NewsEditPage = (e) => {
+const EditNews = (e) => {
 
   let history = useHistory();
 
@@ -33,16 +33,11 @@ const NewsEditPage = (e) => {
     };
 
     fetchData();
-  }, []);
+  }, [id, setSelectedNews]);
 
   const submitEdit = async (e) => {
     e.preventDefault();
     try {
-      // console.log(`id: ${id}`);
-      // console.log(`updatedTitle: ${updatedTitle}`);
-      // console.log(`updatedBody: ${updatedBody}`);
-      // console.log(`updatedAuthor: ${updatedAuthor}`);
-      // console.log(`updatedCategory: ${updatedCategory}`);
 
       const response = await LoaderAPI.post(`/news/${id}/editNews`, {
         news_id: id,
@@ -100,16 +95,16 @@ const NewsEditPage = (e) => {
                     onChange={(e) => setUpdatedBody(e.target.value)}></textarea>
                 </div>
 
-                <div className="form-outline mb-4">
+                <div className="newsAuthorTextArea form-outline mb-4">
                   <label className="form-label" htmlFor="textAreaExample6">Author </label>
-                  <textarea className="form-control"
+                  <input className="form-control"
                     id="inputBorders"
                     rows="1"
                     value={updatedAuthor}
-                    onChange={(e) => setUpdatedAuthor(e.target.value)}></textarea>
+                    onChange={(e) => setUpdatedAuthor(e.target.value)}/>
                 </div>
 
-                <div class="form-outline w-50 mb-4">
+                <div class="newsCategoryTextarea form-outline w-50 mb-4">
                   <label class="form-label" htmlFor="textAreaExample6">
                     Category
                   </label>
@@ -125,7 +120,6 @@ const NewsEditPage = (e) => {
                     <option value="Politics">Politics</option>
                   </select>
                 </div>
-                {/* </div>   */}
 
                 <button type="submit"
                   onClick={submitEdit}
@@ -142,4 +136,4 @@ const NewsEditPage = (e) => {
   )
 };
 
-export default NewsEditPage;
+export default EditNews;
