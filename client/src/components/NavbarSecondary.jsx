@@ -6,7 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 function NavbarSecondary() {
 
     const getUsername = localStorage.getItem("username");
-    const getPassword = localStorage.getItem("password");
+    // const getPassword = localStorage.getItem("password");
 
     const { user_id } = useParams();
 

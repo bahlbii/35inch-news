@@ -17,6 +17,7 @@ const AddNews = () => {
     const addnews = async (e) => {
         e.preventDefault(); //prevent page from refreshing
         try {
+            // eslint-disable-next-line no-unused-vars
             const response = await LoaderAPI.post(`/news/addNews`, { //toFix
                 news_title,
                 news_body,

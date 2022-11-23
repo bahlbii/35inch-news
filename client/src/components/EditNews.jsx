@@ -39,6 +39,7 @@ const EditNews = (e) => {
     e.preventDefault();
     try {
 
+      // eslint-disable-next-line no-unused-vars
       const response = await LoaderAPI.post(`/news/${id}/editNews`, {
         news_id: id,
         news_title: updatedTitle,

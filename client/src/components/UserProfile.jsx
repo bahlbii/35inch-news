@@ -30,7 +30,7 @@ const UserProfile = (e) => {
         };
 
         fetchData();
-    }, []);
+    });
 
     //send user to homepage of news list
     const backToList = async (e) => {
