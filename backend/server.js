@@ -108,7 +108,7 @@ app.post("/api/user", async (req, res) => {
   try {
     const username = req.body.username;
 
-    const aUser = await db.query("SELECT * FROM users WHERE username = $1",[
+    const aUser = await db.query("SELECT * FROM users WHERE username = $1", [
       username
     ]);
     res.status(200).json({
@@ -191,26 +191,6 @@ app.post("/api/news/:id/editNews", async (req, res) => {
     console.log(err);
   }
 });
-
-//POST ROUTE: update user profile 
-// app.post("/api/news/editUser", async (req, res) => {
-//   try {
-//     const updateNews = await db.query(
-//       "UPDATE users SET username = $1, password = $2 WHERE user_id = $3 RETURNING *;",
-//       [req.body.username, req.body.password, req.body.user_id]
-//     )
-
-//     res.status(201).json({
-//       status: "success",
-//       data: {
-//         updatedNews: updateNews.rows[0],
-//       },
-//     });
-//     console.log(`updatedNews: ${updateNews.rows[0]}`);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
 
 // use .env file to get the default port
 const port = process.env.PORT || 8000;

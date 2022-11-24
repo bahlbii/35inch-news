@@ -91,7 +91,7 @@ const EditNews = (e) => {
                   <label className="form-label" htmlFor="textAreaExample6"> News </label>
                   <textarea className="form-control"
                     id="inputBorders"
-                    rows="3"
+                    rows="5"
                     value={updatedBody}
                     onChange={(e) => setUpdatedBody(e.target.value)}></textarea>
                 </div>
