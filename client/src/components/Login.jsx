@@ -25,6 +25,8 @@ const Login = () => {
         userEmail: userEmailLogin,
         password: passwordLogin
       });
+      console.log(response.data.data.user);
+      
 
       localStorage.setItem("username", `${response.data.data.user.username}`);
       localStorage.setItem("password", `${response.data.data.user.password}`);

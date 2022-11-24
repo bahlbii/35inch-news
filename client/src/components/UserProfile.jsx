@@ -1,47 +1,55 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { NewsContext } from "../context/NewsContext";
+import React, { useState } from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import LoaderAPI from "./LoaderAPI";
 import NavbarSecondary from "./NavbarSecondary";
+import { NewsContext } from "../context/NewsContext";
 
 const UserProfile = (e) => {
 
     let history = useHistory();
 
-    const { id } = useParams();
 
-    //context for which user login
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
     const { user, setUser } = useContext(NewsContext);
 
-    const [firstName, setFirstName] = useState(() => user);
-    const [lastName, setLastName] = useState(() => user);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await LoaderAPI.get(`/user/${id}`);
-                setUser(response.data.data);
-                setFirstName(response.data.data.user.username);
-                setLastName(response.data.data.user.useremail)
+    const getUsername = localStorage.getItem("username");
 
-            } catch (err) {
-                console.log(err);
-            }
-        };
 
-        fetchData();
-    });
+    // // fetch the logged in user
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await LoaderAPI.get(`/user`, {
+    //                 getUsername
+    //             });
+    //             console.log(getUsername);
+    //             setUser(response.data.data.user);
+    //             console.log(response.data.data.user);
+    //         } catch (err) {
+    //             console.error(err.message);
+    //         }
+    //     }
 
-    //send user to homepage of news list
+    //     fetchData();
+    // });
+
+
     const backToList = async (e) => {
         history.push("/news");
     }
 
     return (
         <>
+
             <div>
                 <NavbarSecondary />
             </div>
+
             <div className='container'>
                 <div className="w-100 mt-5 mx-auto">
                     <button type="submit"

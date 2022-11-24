@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import NavbarSecondary from './NavbarSecondary';
 import './style.css'
+import { useState } from 'react';
 
 const NewsList = () => {
 
@@ -14,6 +15,7 @@ const NewsList = () => {
     const getPassword = localStorage.getItem("password");
 
     const { news, setNews } = useContext(NewsContext);
+    const [filterBy, setFilterBy] = useState(null);
 
     useEffect(() => {
         if (getUsername == null || getPassword == null) {
@@ -21,9 +23,10 @@ const NewsList = () => {
         }
         const fetchData = async () => {
             try {
-                const response = await LoaderAPI.get("/news");
+                const response = await LoaderAPI.get("/news", [
+                    filterBy
+                ]);
                 setNews(response.data.data.news);
-                console.log(`setNews: ${response.data.data}`);
             } catch (err) {
                 console.error(err.message);
             }
@@ -70,7 +73,28 @@ const NewsList = () => {
                         Add News
                     </button>
                 </div>
-                <table className="table"><thead><tr><th scope='col'></th></tr></thead></table>
+            </div>
+            <div className='container'>
+
+                <div className="form-outline w-50 mb-4">
+                    <label className="filterByText form-className" htmlFor="textAreaExample6">
+                        Filter by Category
+                    </label>
+                    <select
+                        onChange={(e) => setFilterBy(e.target.value)}
+                        className="inputBorders custom-select"
+                    >
+                        <option value="General" className='option1'>General</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Cuisine">Cuisine</option>
+                        <option value="Politics">Politics</option>
+                    </select>
+                </div>
+
+            </div>
+            <div className='container'>
+                <hr></hr>
                 <div className="row">
                     {news && news.map((news) => {
                         return (
@@ -101,15 +125,15 @@ const NewsList = () => {
                                         >
                                             Delete
                                         </button>
-
-
                                     </div>
                                 </div>
                             </div>
                         )
                     })}
                 </div>
+
             </div>
+
 
         </>
     )

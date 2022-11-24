@@ -1,22 +1,21 @@
 import React from 'react'
 import './style.css'
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 function NavbarSecondary() {
 
-    const getUsername = localStorage.getItem("username");
-    // const getPassword = localStorage.getItem("password");
-
-    const { user_id } = useParams();
-
     let history = useHistory();
-    // const toLogin = async () => {
-    //     history.push("/login")
-    // }
-    const toUserProfile = async (e) => {
-        history.push(`/user/:${user_id}`)
+
+    const getUsername = localStorage.getItem("username");
+
+    // go to user profile
+    const toUserProfile = async () => {
+        console.log(`${getUsername}`);
+        history.push(`/user`)
     }
+
+    //sign out
     const toSignOut = async () => {
         localStorage.clear();
         window.location.href = '/';
@@ -47,9 +46,9 @@ function NavbarSecondary() {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="/user"
+                                    <Dropdown.Item
                                         variant="success"
-                                        onClick={() => toUserProfile(user_id)} >
+                                        onClick={() => toUserProfile(getUsername)} >
                                         Profile
                                     </Dropdown.Item>
                                     <Dropdown.Item

@@ -66,6 +66,8 @@ app.post("/api/login", async (req, res) => {
 //GET ROUTE: get all news in the database
 app.get("/api/news", async (req, res) => {
   try {
+
+    // const totalNews = await db.query("SELECT * FROM news_table WHERE news_category = 'Tech' ORDER BY news_id DESC");
     const totalNews = await db.query("SELECT * FROM news_table ORDER BY news_id DESC");
 
     res.status(200).json({
@@ -102,14 +104,12 @@ app.get("/api/news/:id", async (req, res) => {
 });
 
 //GET ROUTE: get a user with id
-app.get("/api/user/:id", async (req, res) => {
+app.post("/api/user", async (req, res) => {
   try {
+    const username = req.body.username;
 
-    //get user data
-    const { id } = req.params;
-    console.log(`id: ${id}`)
-    const aUser = await db.query("SELECT * FROM users WHERE user_id = $1", [
-      1
+    const aUser = await db.query("SELECT * FROM users WHERE username = $1",[
+      username
     ]);
     res.status(200).json({
       status: "success",
@@ -117,7 +117,6 @@ app.get("/api/user/:id", async (req, res) => {
         user: aUser.rows[0]
       }
     });
-    console.log(aUser.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
@@ -166,7 +165,14 @@ app.delete("/api/news/:id", async (req, res) => {
   }
 });
 
+// // get filtered news
+// app.get("/api/news/sthsth")
+// const totalNews = await db.query("SELECT * FROM news_table WHERE news_category = $1 ORDER BY news_id DESC", [
+//   req.body.filter
+// ]);
+
 //POST ROUTE: add a update to a news 
+
 app.post("/api/news/:id/editNews", async (req, res) => {
   try {
     const updateNews = await db.query(
@@ -185,6 +191,7 @@ app.post("/api/news/:id/editNews", async (req, res) => {
     console.log(err);
   }
 });
+
 //POST ROUTE: update user profile 
 // app.post("/api/news/editUser", async (req, res) => {
 //   try {
