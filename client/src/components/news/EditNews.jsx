@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { NewsContext } from "../../contextProvider/NewsContext";
+import { NewsContext } from "../NewsContext";
 import LoaderAPI from "../LoaderAPI";
 import NavbarSecondary from "../navbar/NavbarSecondary";
 

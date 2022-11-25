@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import LoaderAPI from "../LoaderAPI";
-import { NewsContext } from '../../contextProvider/NewsContext';
+import { NewsContext } from '../NewsContext';
 import NavbarSecondary from '../navbar/NavbarSecondary';
 import '../../css/style.css'
 

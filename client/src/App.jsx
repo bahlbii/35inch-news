@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NewsContextProvider } from './contextProvider/NewsContext';
+import { NewsContextProvider } from './components/NewsContext';
 import Register from './components/user/Register';
 import Login from './components/user/Login';
 import UserProfile from './components/user/UserProfile';
