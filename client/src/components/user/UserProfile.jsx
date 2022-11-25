@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import LoaderAPI from "./LoaderAPI";
-import NavbarSecondary from "./NavbarSecondary";
+import LoaderAPI from "../LoaderAPI";
+import NavbarSecondary from "../navbar/NavbarSecondary";
 
 const UserProfile = () => {
 
@@ -41,7 +41,6 @@ const UserProfile = () => {
 
     return (
         <>
-
             <div>
                 <NavbarSecondary />
             </div>

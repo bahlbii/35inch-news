@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { NewsContext } from "../context/NewsContext";
-import LoaderAPI from "./LoaderAPI";
-import NavbarSecondary from "./NavbarSecondary";
+import { NewsContext } from "../../contextProvider/NewsContext";
+import LoaderAPI from "../LoaderAPI";
+import NavbarSecondary from "../navbar/NavbarSecondary";
 
 const EditNews = (e) => {
 
@@ -38,7 +38,6 @@ const EditNews = (e) => {
   const submitEdit = async (e) => {
     e.preventDefault();
     try {
-
       // eslint-disable-next-line no-unused-vars
       const response = await LoaderAPI.post(`/news/${id}/editNews`, {
         news_id: id,

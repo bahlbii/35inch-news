@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NewsContextProvider } from './context/NewsContext';
-import Register from './components/Register';
-import Login from './components/Login';
-import AddNews from './components/AddNews';
+import { NewsContextProvider } from './contextProvider/NewsContext';
+import Register from './components/user/Register';
+import Login from './components/user/Login';
+import UserProfile from './components/user/UserProfile';
+import AddNews from './components/news/AddNews';
 import Landing from './components/Landing';
-import EditNews from './components/EditNews';
-import NewsList from './components/NewsList';
-import UserProfile from './components/UserProfile';
+import EditNews from './components/news/EditNews';
+import NewsList from './components/news/NewsList';
 
 const App = () => {
 

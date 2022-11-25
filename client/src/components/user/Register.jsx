@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import LoaderAPI from './LoaderAPI';
-import Navbar from './NavbarMain';
+import LoaderAPI from '../LoaderAPI';
+import Navbar from '../navbar/NavbarMain';
 
 const Register = () => {
 

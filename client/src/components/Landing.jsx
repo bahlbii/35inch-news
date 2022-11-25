@@ -1,5 +1,5 @@
 import React from 'react';
-import NavbarMain from './NavbarMain';
+import NavbarMain from './navbar/NavbarMain';
 
 const Landing = () => {
     

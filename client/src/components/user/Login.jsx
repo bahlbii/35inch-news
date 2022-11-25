@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import LoaderAPI from './LoaderAPI';
-import Navbar from './NavbarMain';
+import LoaderAPI from '../LoaderAPI';
+import Navbar from '../navbar/NavbarMain';
 
 const Login = () => {
   //local storage
@@ -33,7 +33,7 @@ const Login = () => {
 
     } catch (err) {
       //set the message to be presented to user
-      setMessageForUser("Incorrect userEmail or password.");
+      setMessageForUser("Incorrect username or password.");
     }
   }
   //take user to regsiter page 

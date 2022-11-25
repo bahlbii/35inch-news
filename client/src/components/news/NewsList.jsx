@@ -1,9 +1,9 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useHistory } from "react-router-dom";
-import LoaderAPI from "./LoaderAPI";
-import { NewsContext } from '../context/NewsContext';
-import NavbarSecondary from './NavbarSecondary';
-import './style.css'
+import LoaderAPI from "../LoaderAPI";
+import { NewsContext } from '../../contextProvider/NewsContext';
+import NavbarSecondary from '../navbar/NavbarSecondary';
+import '../../css/style.css'
 
 const NewsList = () => {
 
