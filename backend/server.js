@@ -11,7 +11,7 @@ app.use(express.json());
 app.get("/", (req, res) => res.send("hello from heroku"));
 
 //POST ROUTE to register user
-app.post("/api/register", async (req, res) => {
+app.post("/register", async (req, res) => {
 
   //get userEmail and password from the request body of the register api call
   const userName = req.body["userNameRegister"];
@@ -35,7 +35,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 //Post Route to login
-app.post("/api/login", async (req, res) => {
+app.post("/login", async (req, res) => {
   //get userEmail and password from the request body of the login api call
   const username = req.body.userEmail;
   const password = req.body.password;
@@ -61,7 +61,7 @@ app.post("/api/login", async (req, res) => {
 });
 
 //GET ROUTE: get all news in the database
-app.get("/api/news", async (req, res) => {
+app.get("/news", async (req, res) => {
   try {
 
     // const totalNews = await db.query("SELECT * FROM news_table WHERE news_category = 'Tech' ORDER BY news_id DESC");
@@ -80,7 +80,7 @@ app.get("/api/news", async (req, res) => {
 });
 
 //GET ROUTE: get a news with id
-app.get("/api/news/:id", async (req, res) => {
+app.get("/news/:id", async (req, res) => {
   try {
 
     //get news data
@@ -101,7 +101,7 @@ app.get("/api/news/:id", async (req, res) => {
 });
 
 //GET ROUTE: get a user with id
-app.post("/api/profile", async (req, res) => {
+app.post("/profile", async (req, res) => {
   try {
     const username = req.body.username;
 
@@ -122,7 +122,7 @@ app.post("/api/profile", async (req, res) => {
 });
 
 //POST ROUTE: add a news
-app.post("/api/news/addNews", async (req, res) => {
+app.post("/news/addNews", async (req, res) => {
 
   const news_title = req.body["news_title"];
   const news_author = req.body["news_author"];
@@ -147,7 +147,7 @@ app.post("/api/news/addNews", async (req, res) => {
 });
 
 //DELETE ROUTe: delete a news
-app.delete("/api/news/:id", async (req, res) => {
+app.delete("/news/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const aNews = await db.query("DELETE FROM news_table WHERE news_id = $1", [
@@ -165,7 +165,7 @@ app.delete("/api/news/:id", async (req, res) => {
 });
 
 //POST ROUTE: add a update to a news 
-app.post("/api/news/:id/editNews", async (req, res) => {
+app.post("/news/:id/editNews", async (req, res) => {
   try {
     const updateNews = await db.query(
       "UPDATE news_table SET news_title = $1, news_body = $2, news_author = $3, news_category = $4 WHERE news_id = $5 RETURNING *;",
