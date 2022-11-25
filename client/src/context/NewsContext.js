@@ -6,7 +6,6 @@ export const NewsContextProvider = (props) => {
 
     const [news, setNews] = useState(null);
     const [selectedNews, setSelectedNews] = useState(null);
-    const [user, setUser] = useState(null);
 
     return (
         <NewsContext.Provider
@@ -15,8 +14,6 @@ export const NewsContextProvider = (props) => {
                 setNews,
                 selectedNews,
                 setSelectedNews,
-                user,
-                setUser,
             }}
         >
             {props.children}
