@@ -25,6 +25,7 @@ const Register = () => {
       const validRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
       if (userEmailRegister.match(validRegex) && passwordRegister !== '') {
+        // eslint-disable-next-line no-unused-vars
         const response = await LoaderAPI.post(`/register`, {
           userNameRegister,
           userEmailRegister,
