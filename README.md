@@ -4,6 +4,10 @@
 A Haber Module web project 
 
 
+Live Demo: https://news-demo-fullstack.netlify.app/
+
+
+
 ## Installation
 
 To install this project run
