@@ -4,5 +4,6 @@ import axios from "axios";
  * necessary api urls to be hit
  */
 export default axios.create({
-    baseURL: "http://localhost:5000/api"
+    baseURL: "https://news-demo-backend.herokuapp.com/"
+    // baseURL: "http://localhost:5000/api"
 });

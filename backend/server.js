@@ -8,8 +8,6 @@ const db = require('./elephantsql'); //for elephant
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => res.send("hello from heroku"));
-
 //POST ROUTE to register user
 app.post("/api/register", async (req, res) => {
 
