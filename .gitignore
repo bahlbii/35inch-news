@@ -4,5 +4,5 @@ package-lock.json
 .txt
 temp*.py
 old/
-../db.js
+backend/db.js
 **.env
