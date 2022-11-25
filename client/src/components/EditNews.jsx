@@ -105,8 +105,8 @@ const EditNews = (e) => {
                     onChange={(e) => setUpdatedAuthor(e.target.value)}/>
                 </div>
 
-                <div class="newsCategoryTextarea form-outline w-50 mb-4">
-                  <label class="form-label" htmlFor="textAreaExample6">
+                <div className="newsCategoryTextarea form-outline w-50 mb-4">
+                  <label className="form-label" htmlFor="textAreaExample6">
                     Category
                   </label>
                   <select

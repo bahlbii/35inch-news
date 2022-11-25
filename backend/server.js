@@ -35,28 +35,23 @@ app.post("/api/register", async (req, res) => {
 //Post Route to login
 app.post("/api/login", async (req, res) => {
   //get userEmail and password from the request body of the login api call
-  const usercred = req.body.userEmail;
+  const username = req.body.userEmail;
   const password = req.body.password;
 
   try {
     // login page
     let sqlLogin = 'SELECT * FROM users WHERE (useremail = $1 OR username = $1) AND password = $2;'
     const loginUser = await db.query(sqlLogin, [
-      usercred, password]);
+      username, password]);
 
-    if (loginUser.rowCount === 1) {
-      res.status(200).json({
-        status: "success",
-        data: {
-          user: loginUser.rows[0],
-        },
-      });
-      console.log(loginUser.rows[0])
-    }
-    else {
-      res.status(404).json({
-      });
-    }
+    res.status(200).json({
+      status: "success",
+      data: {
+        user: loginUser.rows[0],
+      },
+    });
+    console.log(loginUser.rows[0])
+
   } catch (err) {
     console.log(err.message)
   }
@@ -104,7 +99,7 @@ app.get("/api/news/:id", async (req, res) => {
 });
 
 //GET ROUTE: get a user with id
-app.post("/api/user", async (req, res) => {
+app.post("/api/profile", async (req, res) => {
   try {
     const username = req.body.username;
 
@@ -117,6 +112,8 @@ app.post("/api/user", async (req, res) => {
         user: aUser.rows[0]
       }
     });
+    console.log(`username: ${username}`)
+    console.log(`res: ${aUser.status}`)
   } catch (err) {
     console.error(err.message);
   }
@@ -165,14 +162,7 @@ app.delete("/api/news/:id", async (req, res) => {
   }
 });
 
-// // get filtered news
-// app.get("/api/news/sthsth")
-// const totalNews = await db.query("SELECT * FROM news_table WHERE news_category = $1 ORDER BY news_id DESC", [
-//   req.body.filter
-// ]);
-
 //POST ROUTE: add a update to a news 
-
 app.post("/api/news/:id/editNews", async (req, res) => {
   try {
     const updateNews = await db.query(

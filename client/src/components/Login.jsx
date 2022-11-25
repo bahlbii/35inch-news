@@ -25,8 +25,6 @@ const Login = () => {
         userEmail: userEmailLogin,
         password: passwordLogin
       });
-      console.log(response.data.data.user);
-      
 
       localStorage.setItem("username", `${response.data.data.user.username}`);
       localStorage.setItem("password", `${response.data.data.user.password}`);
@@ -51,6 +49,7 @@ const Login = () => {
       <div className="w-50 p-5 mx-auto align-items-center">
         <div className="registration p-5">
           <form className='shadow-lg p-5 mb-5 bg-white rounded '>
+
             <div className="form-group">
               <label htmlFor="email">Email or username</label>
               <input type="email"
@@ -58,8 +57,8 @@ const Login = () => {
                 onChange={(e) => { setuserEmailLogin(e.target.value) }}
                 className=" inputBorders form-control"
                 placeholder="Enter username or email" />
-
             </div>
+
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input type="password"
@@ -68,20 +67,25 @@ const Login = () => {
                 className="inputBorders form-control"
                 placeholder="Password" />
             </div>
+
             <div><h5>{messageForUser}</h5></div>
+
             <button type="submit"
               onClick={login}
               className="login_button btn btn-primary">
               Login
             </button>
 
-            <hr></hr>
+            <hr/>
+
             <h6>Don't have an account? click here</h6>
-            <hr />
+
+            <hr/>
 
             <button type="submit"
               onClick={register}
-              className="login_button btn btn-primary">
+              className="login_button btn btn-primary"
+            >
               Register
             </button>
           </form>

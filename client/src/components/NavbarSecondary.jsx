@@ -3,6 +3,7 @@ import './style.css'
 import { useHistory } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 
+
 function NavbarSecondary() {
 
     let history = useHistory();
@@ -10,8 +11,7 @@ function NavbarSecondary() {
     const getUsername = localStorage.getItem("username");
 
     // go to user profile
-    const toUserProfile = async () => {
-        console.log(`${getUsername}`);
+    const toUserProfile = async (e) => {
         history.push(`/user`)
     }
 
@@ -45,7 +45,7 @@ function NavbarSecondary() {
                                     {getUsername}
                                 </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
+                                <Dropdown.Menu style={{ margin: 0 }}>
                                     <Dropdown.Item
                                         variant="success"
                                         onClick={() => toUserProfile(getUsername)} >

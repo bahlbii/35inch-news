@@ -83,7 +83,7 @@ const NewsList = () => {
                 </div>
             </div>
 
-            {/* filter by category */}
+            {/* filter by category selection*/}
             <div className='container'>
                 <div className="filterByText form-outline w-50 mb-4">
                     <label className="form-className" htmlFor="textAreaExample6">
@@ -102,7 +102,6 @@ const NewsList = () => {
                     </select>
                 </div>
             </div>
-
 
             <div className='container'>
                 <hr></hr>
