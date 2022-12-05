@@ -30,7 +30,7 @@ const NewsList = () => {
             }
         }
         fetchData();
-    });
+    }, []);
 
     //apply filter
     const handleFilterSelection = async (e) => {
